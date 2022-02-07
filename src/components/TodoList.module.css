@@ -1,14 +1,28 @@
 .TasksCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: whitesmoke;
     margin: 2rem 3rem;
-    border: 10px;
+    /* border: 210px; */
+    width: 80%;
+
+    border-radius: 15px;
+}
+
+.SearchBox {
+    width: 90%;
+    max-width: 40rem;
+    margin: 1rem auto;
+
 }
 
 .TasksList {
     list-style: none;
     width: 90%;
     max-width: 40rem;
-    margin: 2rem auto;
+    margin: 1rem auto;
     padding: 0;
 }
 

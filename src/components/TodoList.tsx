@@ -9,12 +9,19 @@ interface TaskListProps {
 	}[];
 	onRemoveTask: (id: number) => void;
 	onUpdateTask: (id: number, title: string) => void;
+	onSearchTasks: (title: string) => void;
 }
 
-const TodoList = (props: TaskListProps) => {
+const TodoList = ({
+	items,
+	onRemoveTask,
+	onUpdateTask,
+	onSearchTasks,
+}: TaskListProps) => {
 	const [updatedTask, setUpdatedTask] = React.useState('');
 	const [showUpdateInput, setShowUpdateInput] = React.useState(false);
 	const [selectedTaskId, setSelectedTaskId] = React.useState<number>();
+	const [query, setQuery] = React.useState('');
 
 	const updateTaskHandler = (
 		taskId: number,
@@ -24,15 +31,27 @@ const TodoList = (props: TaskListProps) => {
 		setUpdatedTask(task);
 		if (updatedTask.length === 0) return;
 
-		props.onUpdateTask(taskId, updatedTask);
+		onUpdateTask(taskId, updatedTask);
 		setUpdatedTask('');
 		setShowUpdateInput(false);
 	};
 
 	return (
 		<div className={styles.TasksCard}>
+			<div className={styles.SearchBox}>
+				<input
+					type="text"
+					value={query}
+					placeholder="Search Tasks"
+					onChange={(e) => {
+						setQuery(e.target.value);
+						onSearchTasks(e.target.value.toLowerCase());
+					}}
+				/>				
+			</div>
+
 			<ul className={styles.TasksList}>
-				{props.items.map((item, index) => {
+				{items.map((item, index) => {
 					return (
 						<div key={index}>
 							{/* React tracks the elements in the list in the child element. */}
@@ -51,7 +70,7 @@ const TodoList = (props: TaskListProps) => {
 												updateTaskHandler(item.id, item.title, updatedTask)
 											}
 										>
-											Done
+											Apply
 										</button>
 									</>
 								) : (
@@ -69,7 +88,7 @@ const TodoList = (props: TaskListProps) => {
 											</button>
 											<button
 												className={styles.TaskItemButton}
-												onClick={() => props.onRemoveTask(item.id)}
+												onClick={() => onRemoveTask(item.id)}
 											>
 												DELETE
 											</button>
