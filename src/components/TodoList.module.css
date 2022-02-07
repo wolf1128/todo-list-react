@@ -1,47 +1,44 @@
 .TasksCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
-    margin: 2rem 3rem;
-    /* border: 210px; */
-    width: 80%;
-
-    border-radius: 15px;
+	background-color: whitesmoke;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: 2vh auto;
+    min-width: 50vw;
 }
 
 .SearchBox {
-    width: 90%;
-    max-width: 40rem;
-    margin: 1rem auto;
-
+	width: 90%;
+	margin: 2vh auto;
 }
 
 .TasksList {
-    list-style: none;
-    width: 90%;
-    max-width: 40rem;
-    margin: 1rem auto;
-    padding: 0;
+	list-style: none;
+	margin: 5vh auto;
+	padding: 0;
 }
 
 .TaskItem {
-    margin: 1rem;
-    padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.26);
-    border-radius: 6px;
+	margin: 1vh 1vw;
+	padding: 1vh 1vw;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+	border-radius: 10px;
+	display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.TaskItemButtons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
 }
 
 .TaskItemButton {
-    margin: 5px;
-    background: #50005a;
-    border: 1px solid #50005a;
-    color: white;
-    padding: .5rem 1.5rem;
-    border-radius: 15px;
-    cursor: pointer;
+	margin: 5px;
+	background: #50005a;
+	border: 1px solid #50005a;
+	color: white;
+	padding: 0.5rem 1.5rem;
+	border-radius: 15px;
+	cursor: pointer;
 }

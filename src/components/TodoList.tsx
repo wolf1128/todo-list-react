@@ -76,7 +76,7 @@ const TodoList = ({
 								) : (
 									<>
 										<span>{item.title}</span>
-										<span>
+										<span className={styles.TaskItemButtons}>
 											<button
 												className={styles.TaskItemButton}
 												onClick={() => {
