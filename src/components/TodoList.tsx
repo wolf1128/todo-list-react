@@ -6,16 +6,19 @@ interface TaskListProps {
 	items: {
 		id: number;
 		title: string;
+		isFinished: boolean;
 	}[];
 	onRemoveTask: (id: number) => void;
-	onUpdateTask: (id: number, title: string) => void;
+	onUpdateTaskTitle: (id: number, title: string) => void;
+	onUpdateTaskStatus: (id: number) => void;
 	onSearchTasks: (title: string) => void;
 }
 
 const TodoList = ({
 	items,
 	onRemoveTask,
-	onUpdateTask,
+	onUpdateTaskTitle,
+	onUpdateTaskStatus,
 	onSearchTasks,
 }: TaskListProps) => {
 	const [updatedTask, setUpdatedTask] = React.useState('');
@@ -31,7 +34,7 @@ const TodoList = ({
 		setUpdatedTask(task);
 		if (updatedTask.length === 0) return;
 
-		onUpdateTask(taskId, updatedTask);
+		onUpdateTaskTitle(taskId, updatedTask);
 		setUpdatedTask('');
 		setShowUpdateInput(false);
 	};
@@ -47,7 +50,7 @@ const TodoList = ({
 						setQuery(e.target.value);
 						onSearchTasks(e.target.value.toLowerCase());
 					}}
-				/>				
+				/>
 			</div>
 
 			<ul className={styles.TasksList}>
@@ -75,7 +78,23 @@ const TodoList = ({
 									</>
 								) : (
 									<>
-										<span>{item.title}</span>
+										<div>
+											<input
+												id={'taskTitle-' + item.id}
+												type="checkbox"
+												onChange={() => onUpdateTaskStatus(item.id)}
+											/>
+											<label
+												htmlFor={'taskTitle-' + item.id}
+												style={
+													item.isFinished
+														? { textDecoration: 'line-through' }
+														: {}
+												}
+											>
+												{item.title}
+											</label>
+										</div>
 										<span className={styles.TaskItemButtons}>
 											<button
 												className={styles.TaskItemButton}
