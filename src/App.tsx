@@ -28,6 +28,7 @@ function App() {
 		},
 	]);
 	const [filteredTasks, setFilteredTasks] = useState<typeof tasks>([]);
+	const [selectedTab, setSelectedTab] = React.useState(0);
 
 	const addTaskHandler = (title: string) => {
 		setTasks((prevTasks) => [
@@ -75,8 +76,21 @@ function App() {
 
 	React.useEffect(() => {
 		// NOTE: We always want fresh data for filtered ones.
-		setFilteredTasks(tasks);
-	}, [tasks]);
+		switch (selectedTab) {
+			case 0:
+				setFilteredTasks(tasks);
+				break;
+			case 1:
+				setFilteredTasks(tasks.filter((task) => task.isFinished === true));
+				break;
+			case 2:
+				setFilteredTasks(tasks.filter((task) => task.isFinished !== true));
+				break;
+			default:
+				setFilteredTasks(tasks);
+				break;
+		}
+	}, [tasks, selectedTab]);
 
 	const searchTasksHandler = (title: string) => {
 		setFilteredTasks(
@@ -93,6 +107,7 @@ function App() {
 			<TodoForm onAddTask={addTaskHandler} />
 			<TodoList
 				items={filteredTasks}
+				onUpdateSelectedTab={setSelectedTab}
 				onUpdateTaskTitle={updateTasTitlekHandler}
 				onUpdateTaskStatus={updateTaskStatusHandler}
 				onRemoveTask={removeTaskHandler}

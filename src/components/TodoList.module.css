@@ -1,9 +1,20 @@
 .TasksCard {
+	position: relative;
 	background-color: whitesmoke;
 	border-radius: 15px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	margin: 2vh auto;
-    min-width: 50vw;
+	min-width: 50vw;
+	animation: fadeEffect 3s;
+}
+
+@keyframes fadeEffect {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 .SearchBox {
@@ -23,14 +34,14 @@
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 	border-radius: 10px;
 	display: flex;
-    flex-direction: row;
+	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 }
 
 .TaskItemButtons {
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .TaskItemButton {
@@ -42,3 +53,33 @@
 	border-radius: 15px;
 	cursor: pointer;
 }
+
+.Tabs {
+	overflow: hidden;
+	border: 1px solid #ccc;
+}
+
+.Tabs button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 14px;
+	transition: 0.3s;
+}
+
+.Tabs button:hover {
+	background-color: #ddd;
+}
+
+.Tabs button.active {
+	background-color: #ccc;
+}
+
+/* .Tab {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+} */

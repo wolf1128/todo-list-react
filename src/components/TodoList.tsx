@@ -8,18 +8,20 @@ interface TaskListProps {
 		title: string;
 		isFinished: boolean;
 	}[];
+	onSearchTasks: (title: string) => void;
 	onRemoveTask: (id: number) => void;
 	onUpdateTaskTitle: (id: number, title: string) => void;
 	onUpdateTaskStatus: (id: number) => void;
-	onSearchTasks: (title: string) => void;
+	onUpdateSelectedTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const TodoList = ({
 	items,
+	onSearchTasks,
 	onRemoveTask,
 	onUpdateTaskTitle,
 	onUpdateTaskStatus,
-	onSearchTasks,
+	onUpdateSelectedTab
 }: TaskListProps) => {
 	const [updatedTask, setUpdatedTask] = React.useState('');
 	const [showUpdateInput, setShowUpdateInput] = React.useState(false);
@@ -39,8 +41,15 @@ const TodoList = ({
 		setShowUpdateInput(false);
 	};
 
+
 	return (
 		<div className={styles.TasksCard}>
+			<div className={styles.Tabs}>
+				<button onClick={() => onUpdateSelectedTab(0)}>Tab#1</button>
+				<button onClick={() => onUpdateSelectedTab(1)}>Tab#2</button>
+				<button onClick={() => onUpdateSelectedTab(2)}>Tab#3</button>
+			</div>
+
 			<div className={styles.SearchBox}>
 				<input
 					type="text"
