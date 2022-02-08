@@ -12,6 +12,7 @@ interface TaskListProps {
 	onRemoveTask: (id: number) => void;
 	onUpdateTaskTitle: (id: number, title: string) => void;
 	onUpdateTaskStatus: (id: number) => void;
+	currentTab: number;
 	onUpdateSelectedTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -21,7 +22,8 @@ const TodoList = ({
 	onRemoveTask,
 	onUpdateTaskTitle,
 	onUpdateTaskStatus,
-	onUpdateSelectedTab
+	onUpdateSelectedTab,
+	currentTab
 }: TaskListProps) => {
 	const [updatedTask, setUpdatedTask] = React.useState('');
 	const [showUpdateInput, setShowUpdateInput] = React.useState(false);
@@ -41,13 +43,27 @@ const TodoList = ({
 		setShowUpdateInput(false);
 	};
 
-
 	return (
 		<div className={styles.TasksCard}>
 			<div className={styles.Tabs}>
-				<button onClick={() => onUpdateSelectedTab(0)}>Tab#1</button>
-				<button onClick={() => onUpdateSelectedTab(1)}>Tab#2</button>
-				<button onClick={() => onUpdateSelectedTab(2)}>Tab#3</button>
+				<button
+					style={currentTab === 0 ? { backgroundColor: '#ccc' } : {}}
+					onClick={() => onUpdateSelectedTab(0)}
+				>
+					ALL
+				</button>
+				<button
+					style={currentTab === 1 ? { backgroundColor: '#ccc' } : {}}
+					onClick={() => onUpdateSelectedTab(1)}
+				>
+					COMPLETED
+				</button>
+				<button
+					style={currentTab === 2 ? { backgroundColor: '#ccc' } : {}}
+					onClick={() => onUpdateSelectedTab(2)}
+				>
+					TODO
+				</button>
 			</div>
 
 			<div className={styles.SearchBox}>
@@ -92,6 +108,7 @@ const TodoList = ({
 												id={'taskTitle-' + item.id}
 												type="checkbox"
 												onChange={() => onUpdateTaskStatus(item.id)}
+												checked={item.isFinished}
 											/>
 											<label
 												htmlFor={'taskTitle-' + item.id}

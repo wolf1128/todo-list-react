@@ -73,7 +73,7 @@
 	background-color: #ddd;
 }
 
-.Tabs button.active {
+.Tabs button.active { /* NOTE: This actually didn't work! I handled it using react. */
 	background-color: #ccc;
 }
 

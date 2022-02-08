@@ -46,6 +46,7 @@ function App() {
 			// prevTasks.filter((todo) => todo !== prevTasks[itemIndex])
 			prevTasks.filter((todo) => todo.id !== todoId)
 		);
+		setSelectedTab(0);
 	};
 
 	const updateTasTitlekHandler = (todoId: number, updatedTitle: string) => {
@@ -56,6 +57,7 @@ function App() {
 					: { id: todo.id, title: todo.title, isFinished: false }
 			)
 		);
+		setSelectedTab(0);
 	};
 
 	const updateTaskStatusHandler = (todoId: number) => {
@@ -76,6 +78,9 @@ function App() {
 
 	React.useEffect(() => {
 		// NOTE: We always want fresh data for filtered ones.
+		// NOTE: Don't call Hooks inside loops, conditions, or nested functions. 
+		//  Instead, always use Hooks at the top level of your React function, before any early returns. 
+		//  By following this rule, you ensure that Hooks are called in the same order each time a component renders.
 		switch (selectedTab) {
 			case 0:
 				setFilteredTasks(tasks);
@@ -95,8 +100,17 @@ function App() {
 	const searchTasksHandler = (title: string) => {
 		setFilteredTasks(
 			tasks.filter((task) => {
-				if (title.length > 0) return task.title.toLowerCase().match(title);
+				if (title.length > 0) {
+					if (selectedTab === 0) {
+						return task.title.toLowerCase().match(title); // task status doesn't matter here.
+					} else {
+						const taskStatus = selectedTab === 1 ? true: false;
 
+						return task.title.toLowerCase().match(title) && task.isFinished === taskStatus;
+					}
+				};
+
+				setSelectedTab(0);
 				return task;
 			})
 		);
@@ -107,6 +121,7 @@ function App() {
 			<TodoForm onAddTask={addTaskHandler} />
 			<TodoList
 				items={filteredTasks}
+				currentTab={selectedTab}
 				onUpdateSelectedTab={setSelectedTab}
 				onUpdateTaskTitle={updateTasTitlekHandler}
 				onUpdateTaskStatus={updateTaskStatusHandler}
