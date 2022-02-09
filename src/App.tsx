@@ -49,7 +49,7 @@ function App() {
 		setSelectedTab(0);
 	};
 
-	const updateTaskTitlekHandler = (todoId: number, updatedTitle: string) => {
+	const updateTaskTitleHandler = (todoId: number, updatedTitle: string) => {
 		setTasks((prevTasks) =>
 			prevTasks.map((todo) =>
 				todo.id === todoId
@@ -126,7 +126,7 @@ function App() {
 				items={filteredTasks}
 				currentTab={selectedTab}
 				onUpdateSelectedTab={setSelectedTab}
-				onUpdateTaskTitle={updateTaskTitlekHandler}
+				onUpdateTaskTitle={updateTaskTitleHandler}
 				onUpdateTaskStatus={updateTaskStatusHandler}
 				onRemoveTask={removeTaskHandler}
 				onSearchTasks={searchTasksHandler}

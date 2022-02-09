@@ -27,11 +27,21 @@ const TasksList = ({
 	onUpdateSelectedTab,
 	currentTab,
 }: TaskListProps) => {
+	const [query, setQuery] = React.useState('');
+
 	return (
 		<div className={styles.TasksCard}>
-			<Tabs currentTab={currentTab} onUpdateSelectedTab={onUpdateSelectedTab} />
+			<Tabs
+				currentTab={currentTab}
+				onUpdateSelectedTab={onUpdateSelectedTab}
+				setQuery={setQuery}
+			/>
 
-			<SearchBox onSearchTasks={onSearchTasks} />
+			<SearchBox
+				query={query}
+				setQuery={setQuery}
+				onSearchTasks={onSearchTasks}
+			/>
 
 			<TasksCardList
 				items={items}
