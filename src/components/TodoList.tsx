@@ -1,6 +1,8 @@
 import React from 'react';
 import Input from './Input';
 import styles from './TodoList.module.css';
+import SearchBox from './SearchBox';
+import Tabs from './Tabs';
 
 interface TaskListProps {
 	items: {
@@ -23,12 +25,11 @@ const TodoList = ({
 	onUpdateTaskTitle,
 	onUpdateTaskStatus,
 	onUpdateSelectedTab,
-	currentTab
+	currentTab,
 }: TaskListProps) => {
 	const [updatedTask, setUpdatedTask] = React.useState('');
 	const [showUpdateInput, setShowUpdateInput] = React.useState(false);
 	const [selectedTaskId, setSelectedTaskId] = React.useState<number>();
-	const [query, setQuery] = React.useState('');
 
 	const updateTaskHandler = (
 		taskId: number,
@@ -45,38 +46,9 @@ const TodoList = ({
 
 	return (
 		<div className={styles.TasksCard}>
-			<div className={styles.Tabs}>
-				<button
-					style={currentTab === 0 ? { backgroundColor: '#ccc' } : {}}
-					onClick={() => onUpdateSelectedTab(0)}
-				>
-					ALL
-				</button>
-				<button
-					style={currentTab === 1 ? { backgroundColor: '#ccc' } : {}}
-					onClick={() => onUpdateSelectedTab(1)}
-				>
-					COMPLETED
-				</button>
-				<button
-					style={currentTab === 2 ? { backgroundColor: '#ccc' } : {}}
-					onClick={() => onUpdateSelectedTab(2)}
-				>
-					TODO
-				</button>
-			</div>
+			<Tabs currentTab={currentTab} onUpdateSelectedTab={onUpdateSelectedTab} />
 
-			<div className={styles.SearchBox}>
-				<input
-					type="text"
-					value={query}
-					placeholder="Search Tasks"
-					onChange={(e) => {
-						setQuery(e.target.value);
-						onSearchTasks(e.target.value.toLowerCase());
-					}}
-				/>
-			</div>
+			<SearchBox onSearchTasks={onSearchTasks} />
 
 			<ul className={styles.TasksList}>
 				{items.map((item, index) => {

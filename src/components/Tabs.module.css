@@ -1,0 +1,30 @@
+.Tabs {
+	overflow: hidden;
+	border: 1px solid #ccc;
+}
+
+.Tabs button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 14px;
+	transition: 0.3s;
+}
+
+.Tabs button:hover {
+	background-color: #ddd;
+}
+
+.Tabs button.active {
+	/* NOTE: This actually didn't work! I handled it using react. */
+	background-color: #ccc;
+}
+
+/* .Tab {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+} */
