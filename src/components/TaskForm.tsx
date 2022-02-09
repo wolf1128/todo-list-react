@@ -1,12 +1,12 @@
 import React from 'react';
 import Input from './Input';
-import styles from './TodoForm.module.css';
+import styles from './TaskForm.module.css';
 
 type TodoFormProps = {
 	onAddTask: (title: string) => void;
 };
 
-const TodoForm = ({ onAddTask }: TodoFormProps) => {
+const TaskForm = ({ onAddTask }: TodoFormProps) => {
 	const [newTask, setNewTask] = React.useState('');
 
 	const addTaskHandler = (event: React.FormEvent) => {
@@ -35,4 +35,4 @@ const TodoForm = ({ onAddTask }: TodoFormProps) => {
 	);
 };
 
-export default TodoForm;
+export default TaskForm;

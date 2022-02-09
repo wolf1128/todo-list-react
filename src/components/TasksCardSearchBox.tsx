@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './SearchBox.module.css';
+import styles from './TasksCardSearchBox.module.css';
 
-interface SearchBoxProps {
+interface TasksCardSearchBoxProps {
 	onSearchTasks: (title: string) => void;
 }
 
-const SearchBox = ({ onSearchTasks }: SearchBoxProps) => {
+const TasksCardSearchBox = ({ onSearchTasks }: TasksCardSearchBoxProps) => {
 	const [query, setQuery] = React.useState('');
 
 	return (
@@ -23,4 +23,4 @@ const SearchBox = ({ onSearchTasks }: SearchBoxProps) => {
 	);
 };
 
-export default SearchBox;
+export default TasksCardSearchBox;

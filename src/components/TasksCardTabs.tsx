@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './Tabs.module.css';
+import styles from './TasksCardTabs.module.css';
 
-interface TabsProps {
+interface TasksCardTabsProps {
 	onUpdateSelectedTab: React.Dispatch<React.SetStateAction<number>>;
 	currentTab: number;
 }
 
-const Tabs = ({ onUpdateSelectedTab, currentTab }: TabsProps) => {
+const TasksCardTabs = ({ onUpdateSelectedTab, currentTab }: TasksCardTabsProps) => {
 	return (
 		<div className={styles.Tabs}>
 			<button
@@ -31,4 +31,4 @@ const Tabs = ({ onUpdateSelectedTab, currentTab }: TabsProps) => {
 	);
 };
 
-export default Tabs;
+export default TasksCardTabs;

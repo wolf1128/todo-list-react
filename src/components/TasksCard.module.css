@@ -1,0 +1,18 @@
+.TasksCard {
+	position: relative;
+	background-color: whitesmoke;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: 2vh auto;
+	min-width: 50vw;
+	animation: fadeEffect 3s;
+}
+
+@keyframes fadeEffect {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

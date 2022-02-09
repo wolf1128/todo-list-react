@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
+import TaskForm from './components/TaskForm';
+import TasksList from './components/TasksCard';
 
 function App() {
 	const [tasks, setTasks] = useState([
@@ -78,8 +78,8 @@ function App() {
 
 	React.useEffect(() => {
 		// NOTE: We always want fresh data for filtered ones.
-		// NOTE: Don't call Hooks inside loops, conditions, or nested functions. 
-		//  Instead, always use Hooks at the top level of your React function, before any early returns. 
+		// NOTE: Don't call Hooks inside loops, conditions, or nested functions.
+		//  Instead, always use Hooks at the top level of your React function, before any early returns.
 		//  By following this rule, you ensure that Hooks are called in the same order each time a component renders.
 		switch (selectedTab) {
 			case 0:
@@ -104,11 +104,14 @@ function App() {
 					if (selectedTab === 0) {
 						return task.title.toLowerCase().match(title); // task status doesn't matter here.
 					} else {
-						const taskStatus = selectedTab === 1 ? true: false;
+						const taskStatus = selectedTab === 1 ? true : false;
 
-						return task.title.toLowerCase().match(title) && task.isFinished === taskStatus;
+						return (
+							task.title.toLowerCase().match(title) &&
+							task.isFinished === taskStatus
+						);
 					}
-				};
+				}
 
 				setSelectedTab(0);
 				return task;
@@ -118,8 +121,8 @@ function App() {
 
 	return (
 		<div className="container">
-			<TodoForm onAddTask={addTaskHandler} />
-			<TodoList
+			<TaskForm onAddTask={addTaskHandler} />
+			<TasksList
 				items={filteredTasks}
 				currentTab={selectedTab}
 				onUpdateSelectedTab={setSelectedTab}
