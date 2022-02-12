@@ -53,8 +53,8 @@ function App() {
 		setTasks((prevTasks) =>
 			prevTasks.map((todo) =>
 				todo.id === todoId
-					? { id: todo.id, title: updatedTitle, isFinished: false }
-					: { id: todo.id, title: todo.title, isFinished: false }
+					? { id: todo.id, title: updatedTitle, isFinished: todo.isFinished }
+					: todo
 			)
 		);
 		setSelectedTab(0);
